@@ -1,1 +1,22 @@
+# Core Data & Analysis
+pandas
+numpy
+scipy
+scikit-learn
 
+# Financial Data APIs
+yfinance
+nasdaq-data-link
+intrinio-sdk
+alpha_vantage
+pycoingecko
+
+# Visualization
+matplotlib
+seaborn
+
+# Testing
+pytest
+
+# Other
+python-dotenv
