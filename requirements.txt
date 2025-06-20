@@ -5,6 +5,8 @@ scipy
 scikit-learn
 
 # Financial Data APIs
+# Data Science
+statsmodels
 yfinance
 nasdaq-data-link
 intrinio-sdk
@@ -14,6 +16,7 @@ pycoingecko
 # Visualization
 matplotlib
 seaborn
+plotly
 
 # Testing
 pytest

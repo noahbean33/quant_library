@@ -1,7 +1,7 @@
 # tests/data/test_fetch_financial_data.py
 
 import pandas as pd
-from src.financial_analysis_platform.data.fetch_financial_data import get_data_yahoo_finance
+from src.financial_analysis_platform.data.fetch_financial_data import get_data_yahoo_finance, get_ticker_info
 
 def test_get_data_yahoo_finance():
     """Tests the get_data_yahoo_finance function."""
@@ -23,3 +23,23 @@ def test_get_data_yahoo_finance():
     expected_columns = ['Open', 'High', 'Low', 'Close', 'Volume']
     for col in expected_columns:
         assert col in df.columns
+
+
+def test_get_ticker_info():
+    """Tests the get_ticker_info function."""
+    # Define test parameters
+    ticker = "AAPL"
+
+    # Fetch info
+    info = get_ticker_info(ticker)
+
+    # Assert that the returned object is a dict
+    assert isinstance(info, dict)
+
+    # Assert that the dict is not empty
+    assert info
+
+    # Assert that the dict has the expected keys
+    assert "symbol" in info
+    assert info["symbol"] == ticker
+    assert "longName" in info

@@ -73,3 +73,11 @@ def get_data_coingecko(coin_id, vs_currency, days):
     return ohlc_df
 
 
+def get_ticker_info(ticker):
+    """
+    Fetch company information for a given ticker using yfinance.
+    """
+    ticker_obj = yf.Ticker(ticker)
+    return ticker_obj.info
+
+

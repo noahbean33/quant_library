@@ -39,18 +39,22 @@ def test_put_option_price(option_params):
     # Known value for these parameters is ~5.57
     assert price == pytest.approx(5.57, abs=0.01)
 
-def test_monte_carlo_simulation(option_params):
+@pytest.fixture
+def option_pricer(option_params):
+    """Provides an OptionPricing instance for testing."""
+    mc_params = option_params.copy()
+    mc_params['S0'] = mc_params.pop('S')
+    return black_scholes.OptionPricing(**mc_params)
+
+def test_monte_carlo_simulation(option_params, option_pricer):
     """Tests the Monte Carlo simulation against the analytical solution."""
     # Analytical prices
     analytical_call = black_scholes.call_option_price(**{k: v for k, v in option_params.items() if k != 'iterations'})
     analytical_put = black_scholes.put_option_price(**{k: v for k, v in option_params.items() if k != 'iterations'})
 
-    # Monte Carlo simulation - adjust params for OptionPricing class
-    mc_params = option_params.copy()
-    mc_params['S0'] = mc_params.pop('S')
-    mc_pricer = black_scholes.OptionPricing(**mc_params)
-    mc_call = mc_pricer.call_option_simulation()
-    mc_put = mc_pricer.put_option_simulation()
+    # Monte Carlo simulation
+    mc_call = option_pricer.call_option_simulation()
+    mc_put = option_pricer.put_option_simulation()
 
     # The MC simulation should be close to the analytical price
     assert mc_call == pytest.approx(analytical_call, abs=0.1)
