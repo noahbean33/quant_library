@@ -83,52 +83,6 @@ def generate_ma_crossover_signals(df: pd.DataFrame, short_window: int, long_wind
     df['position'] = df['signal'].diff()
     return df
 
-def calculate_bollinger_bands(df: pd.DataFrame, window: int = 20, num_std: int = 2) -> pd.DataFrame:
-    """
-    Calculates Bollinger Bands for a given DataFrame.
-
-    Args:
-        df (pd.DataFrame): DataFrame with a 'Close' price column.
-        window (int): The moving average window.
-        num_std (int): The number of standard deviations.
-
-    Returns:
-        pd.DataFrame: DataFrame with 'MA', 'Upper', and 'Lower' band columns.
-    """
-    df['MA'] = df['Close'].rolling(window=window).mean()
-    df['StdDev'] = df['Close'].rolling(window=window).std()
-    df['Upper'] = df['MA'] + (df['StdDev'] * num_std)
-    df['Lower'] = df['MA'] - (df['StdDev'] * num_std)
-    return df
-
-def calculate_rsi(df: pd.DataFrame, window: int = 14) -> pd.DataFrame:
-    """
-    Calculates the Relative Strength Index (RSI).
-
-    Args:
-        df (pd.DataFrame): DataFrame with a 'Close' price column.
-        window (int): The RSI window.
-
-    Returns:
-        pd.DataFrame: DataFrame with the 'RSI' column.
-    """
-    delta = df['Close'].diff(1)
-
-    gain = delta.copy()
-    loss = delta.copy()
-
-    gain[gain < 0] = 0
-    loss[loss > 0] = 0
-    loss = abs(loss)
-
-    avg_gain = gain.rolling(window=window).mean()
-    avg_loss = loss.rolling(window=window).mean()
-
-    rs = avg_gain / avg_loss
-    df['RSI'] = 100 - (100 / (1 + rs))
-    return df
-
-
 def adjust_returns_for_inflation(ticker, start_date, end_date):
     """
     Adjusts stock returns for inflation using CPI data from Nasdaq Data Link.

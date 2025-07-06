@@ -192,3 +192,63 @@ def plot_rsi(df: pd.DataFrame, ticker: str):
     fig.update_yaxes(title_text="RSI", row=2, col=1)
 
     return fig
+
+def plot_stochastic_oscillator(df: pd.DataFrame, ticker: str):
+    """Plots the Stochastic Oscillator using Plotly."""
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=df.index, y=df['%K'], name='%K', line=dict(color='blue')))
+    fig.add_trace(go.Scatter(x=df.index, y=df['%D'], name='%D', line=dict(color='orange')))
+
+    fig.add_hline(y=80, line_dash="dash", line_color="red", annotation_text="Overbought", annotation_position="bottom right")
+    fig.add_hline(y=20, line_dash="dash", line_color="green", annotation_text="Oversold", annotation_position="bottom right")
+
+    fig.update_layout(
+        title_text=f'Stochastic Oscillator for {ticker}',
+        template='plotly_dark',
+        yaxis_title='Value',
+        yaxis_range=[0,100]
+    )
+
+    return fig
+
+def plot_atr(df: pd.DataFrame, ticker: str):
+    """Plots the Average True Range (ATR) using Plotly."""
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=df.index, y=df['ATR'], name='ATR', line=dict(color='purple')))
+
+    fig.update_layout(
+        title_text=f'Average True Range (ATR) for {ticker}',
+        template='plotly_dark',
+        yaxis_title='ATR'
+    )
+
+    return fig
+
+def plot_macd(df: pd.DataFrame, ticker: str):
+    """Plots the MACD indicator using Plotly."""
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, 
+                        vertical_spacing=0.1, 
+                        subplot_titles=(f'Price for {ticker}', 'MACD'))
+
+    # Plot closing price
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], name='Close Price'), row=1, col=1)
+
+    # Plot MACD and Signal Line
+    fig.add_trace(go.Scatter(x=df.index, y=df['MACD'], name='MACD', line=dict(color='blue')), row=2, col=1)
+    fig.add_trace(go.Scatter(x=df.index, y=df['Signal_Line'], name='Signal Line', line=dict(color='orange')), row=2, col=1)
+
+    # Plot MACD Histogram
+    colors = ['green' if val >= 0 else 'red' for val in df['MACD_Histogram']]
+    fig.add_trace(go.Bar(x=df.index, y=df['MACD_Histogram'], name='Histogram', marker_color=colors), row=2, col=1)
+
+    fig.update_layout(
+        title_text=f'MACD Analysis for {ticker}',
+        template='plotly_dark',
+        showlegend=False
+    )
+    fig.update_yaxes(title_text="Price", row=1, col=1)
+    fig.update_yaxes(title_text="MACD", row=2, col=1)
+
+    return fig

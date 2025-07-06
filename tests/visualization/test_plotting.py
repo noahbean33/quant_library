@@ -11,18 +11,29 @@ from src.financial_analysis_platform.visualization.plotting import (
     plot_monte_carlo_simulation,
     plot_bollinger_bands,
     plot_rsi,
+    plot_macd,
+    plot_atr,
+    plot_stochastic_oscillator,
 )
-from src.financial_analysis_platform.data.data_preprocessing import (
+from src.financial_analysis_platform.analysis.technical_analysis import (
     calculate_bollinger_bands,
     calculate_rsi,
+    calculate_macd,
+    calculate_atr,
+    calculate_stochastic_oscillator,
 )
 
 @pytest.fixture
 def sample_stock_data():
     """Fixture for creating sample stock data for plotting tests."""
     dates = pd.to_datetime(pd.date_range(start="2023-01-01", periods=150))
+    close = np.random.uniform(95, 105, size=150)
+    high = close + np.random.uniform(0, 2, size=150)
+    low = close - np.random.uniform(0, 2, size=150)
     data = pd.DataFrame({
-        'Close': np.random.uniform(95, 105, size=150)
+        'High': high,
+        'Low': low,
+        'Close': close
     }, index=dates)
     return data
 
@@ -53,6 +64,9 @@ def technical_analysis_data(sample_stock_data):
     """Fixture to generate data with Bollinger Bands and RSI."""
     data = calculate_bollinger_bands(sample_stock_data)
     data = calculate_rsi(data)
+    data = calculate_macd(data)
+    data = calculate_atr(data)
+    data = calculate_stochastic_oscillator(data)
     return data
 
 def test_plot_monte_carlo_simulation_plotly(monte_carlo_data):
@@ -74,6 +88,29 @@ def test_plot_rsi_plotly(technical_analysis_data):
     """Tests the interactive plot_rsi function."""
     ticker = "TEST"
     fig = plot_rsi(technical_analysis_data, ticker)
+    assert isinstance(fig, go.Figure)
+    assert len(fig.data) == 2
+    assert len(fig.layout.shapes) == 2  # for hlines
+
+def test_plot_macd_plotly(technical_analysis_data):
+    """Tests the interactive plot_macd function."""
+    ticker = "TEST"
+    fig = plot_macd(technical_analysis_data, ticker)
+    assert isinstance(fig, go.Figure)
+    # Price, MACD, Signal, Histogram
+    assert len(fig.data) == 4
+
+def test_plot_atr_plotly(technical_analysis_data):
+    """Tests the interactive plot_atr function."""
+    ticker = "TEST"
+    fig = plot_atr(technical_analysis_data, ticker)
+    assert isinstance(fig, go.Figure)
+    assert len(fig.data) == 1
+
+def test_plot_stochastic_oscillator_plotly(technical_analysis_data):
+    """Tests the interactive plot_stochastic_oscillator function."""
+    ticker = "TEST"
+    fig = plot_stochastic_oscillator(technical_analysis_data, ticker)
     assert isinstance(fig, go.Figure)
     assert len(fig.data) == 2
     assert len(fig.layout.shapes) == 2  # for hlines
