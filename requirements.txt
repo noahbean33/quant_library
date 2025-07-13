@@ -1,36 +1,26 @@
 # Core Data & Analysis
 pandas
 numpy
-scipy
-scikit-learn
 
 # Financial Data APIs
 yfinance
-nasdaq-data-link
-intrinio-sdk
-alpha_vantage
-pycoingecko
-forex-python
-binance-connector
+v20==3.0.25.0
+ibapi
+scikit-learn
 
-# Time Series Analysis & Machine Learning
+# Financial Modeling & Statistics
+scipy
 statsmodels
-sktime
+backtrader
 
 # Visualization
-matplotlib>=3.5
+matplotlib>=3.8
 seaborn
-plotly
-cufflinks
-pandas-bokeh
 mplfinance
-
-# Trading & Backtesting
-backtrader
 
 # Testing
 pytest
+pytest-mock
 
-# Other
-python-dotenv
-openbb
+# Notebook Tools
+nbconvert
