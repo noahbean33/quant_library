@@ -20,34 +20,31 @@ If you haven't already, please follow the installation steps in the main [README
 
 ## Running a Backtest
 
-The platform includes a native backtesting engine to test your trading strategies. Here is a conceptual example of how you might run a backtest for a pairs trading strategy.
+The platform includes a helper function, `run_backtest`, to test your trading strategies. Here is a conceptual example of how you might run a backtest for a pairs trading strategy.
 
 *Note: This is a simplified example. You will need to adapt it to the specific strategy and data source you are using.*
 
 ```python
 # main_backtest.py
-from valueinvestpy.backtesting import BacktestEngine
+from valueinvestpy.backtesting.engine import run_backtest
 from valueinvestpy.strategies.pairs_trading import PairsTradingStrategy
-from valueinvestpy.data import Ticker
+from valueinvestpy.data_fetch import fetch_stock_data
 
-# 1. Define the stocks for the strategy
-stock1 = Ticker('ADBE')
-stock2 = Ticker('NVDA')
+# 1. Fetch historical data for each asset
+stock1 = fetch_stock_data('ADBE', start_date='2020-01-01', end_date='2022-01-01')
+stock2 = fetch_stock_data('NVDA', start_date='2020-01-01', end_date='2022-01-01')
 
-# 2. Initialize the strategy
-strategy = PairsTradingStrategy(stock1, stock2, window=20, z_threshold=2.0)
+# 2. Prepare the data dictionary
+data = {
+    'ADBE': stock1,
+    'NVDA': stock2,
+}
 
-# 3. Initialize the backtesting engine
-engine = BacktestEngine(strategy, start_date='2020-01-01', end_date='2022-01-01')
+# 3. Run the backtest
+final_value = run_backtest(PairsTradingStrategy, data)
 
-# 4. Run the simulation
-results = engine.run()
-
-# 5. Print the performance summary
-print(results.summary())
-
-# 6. Plot the equity curve
-results.plot_equity()
+# 4. Display the final portfolio value
+print(f"Final portfolio value: ${final_value:.2f}")
 ```
 
 ---
