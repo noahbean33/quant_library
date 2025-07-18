@@ -39,6 +39,9 @@ class SVMTechnicalStrategy(bt.Strategy):
         self.sma = sma(self.datas[0].close, window=self.p.ma_period)
         self.rsi = rsi(self.datas[0].close, window=self.p.rsi_period)
 
+        # Track pending orders
+        self.order = None
+
     def next(self):
         """
         Executes on each bar, generates features and a prediction, and places an order.
