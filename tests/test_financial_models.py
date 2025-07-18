@@ -51,7 +51,7 @@ class TestFinancialModels(unittest.TestCase):
         self.assertIn('beta', capm_results)
         self.assertIn('alpha', capm_results)
         self.assertIn('expected_return', capm_results)
-        # Based on the data, beta should be around 1.25
+        # Based on the data, beta should be around 2.62
         self.assertAlmostEqual(capm_results['beta'], 2.62, places=2)
 
     @patch('src.valueinvestpy.analysis.financial_models.fetch_stock_data')
