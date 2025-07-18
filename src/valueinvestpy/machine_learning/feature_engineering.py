@@ -18,7 +18,7 @@ def construct_lagged_return_features(data, lags=2):
     for i in range(0, lags):
         data[f'Lag{i+1}'] = data['Close'].shift(i+1)
 
-    # Calculate the percent of actual changes
+    # Calculate the percent change
     data["Today Change"] = data["Close"].pct_change() * 100
 
     # Calculate the lags in percentage (normalization)
