@@ -38,6 +38,9 @@ class SVMStrategy(bt.Strategy):
         # Keep a reference to the close price data feed
         self.dataclose = self.datas[0].close
 
+        # Track pending orders to avoid repeated submissions
+        self.order = None
+
     def next(self):
         """
         Executes on each bar of data, generates a prediction, and places an order.
