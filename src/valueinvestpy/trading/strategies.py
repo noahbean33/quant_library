@@ -189,7 +189,7 @@ class TrendFollowingTrader(MeanReversionTrader):
         if resampled_len < self.long_mean_periods:
             print(
                 'Insufficient data size to calculate logic. Need',
-                self.mean_periods - resampled_len, 'more.'
+                self.long_mean_periods - resampled_len, 'more.'
             )
             return
 
