@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.simulations.monte_carlo import geometric_brownian_motion
+from src.simulations.monte_carlo import geometric_brownian_motion
 
 @pytest.fixture
 def gbm_params():

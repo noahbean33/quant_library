@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 import numpy as np
-from src.valueinvestpy.analysis.returns import calculate_log_returns
+from src.analysis.returns import calculate_log_returns
 
 class TestReturns(unittest.TestCase):
 

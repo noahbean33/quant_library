@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 from unittest.mock import patch
-from src.valueinvestpy.simulation.stochastic_processes import (
+from src.simulation.stochastic_processes import (
     simulate_gbm, 
     simulate_ornstein_uhlenbeck, 
     simulate_wiener_process, 
@@ -162,7 +162,7 @@ class TestStochasticProcesses(unittest.TestCase):
         expected_cols = self.num_simulations
         self.assertEqual(sim_df.shape, (expected_rows, expected_cols))
 
-    @patch('src.valueinvestpy.simulation.stochastic_processes.simulate_ornstein_uhlenbeck')
+    @patch('src.simulation.stochastic_processes.simulate_ornstein_uhlenbeck')
     def test_simulate_vasicek_model_calls_ornstein_uhlenbeck(self, mock_ou):
         """Test that the Vasicek model correctly calls the Ornstein-Uhlenbeck simulation."""
         r0, kappa, theta, sigma = 0.03, 0.15, 0.05, 0.01

@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from valueinvestpy.statistics.processes import generate_ornstein_uhlenbeck_process
+from src.statistics.processes import generate_ornstein_uhlenbeck_process
 
 
 class TestStochasticProcesses:

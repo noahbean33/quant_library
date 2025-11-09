@@ -1,5 +1,5 @@
 import backtrader as bt
-from valueinvestpy.backtesting.indicators.momentum import Momentum
+from src.backtesting.indicators.momentum import Momentum
 
 class MomentumStrategy(bt.Strategy):
     """

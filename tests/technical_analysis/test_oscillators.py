@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.technical_analysis.oscillators import rsi, macd
+from src.technical_analysis.oscillators import rsi, macd
 
 @pytest.fixture
 def sample_data():

@@ -1,5 +1,5 @@
 import pandas as pd
-from valueinvestpy.technical_analysis.moving_averages import sma
+from src.technical_analysis.moving_averages import sma
 
 def bollinger_bands(data: pd.Series, window: int = 20, num_std: int = 2) -> pd.DataFrame:
     """Calculate Bollinger Bands."""

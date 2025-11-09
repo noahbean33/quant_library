@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from valueinvestpy.statistics.tests import engle_granger_cointegration_test
+from src.statistics.tests import engle_granger_cointegration_test
 
 @pytest.fixture
 def cointegrated_series():

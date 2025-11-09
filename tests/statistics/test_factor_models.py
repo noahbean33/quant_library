@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from src.valueinvestpy.statistics.factor_models import perform_pca_on_returns
+from src.statistics.factor_models import perform_pca_on_returns
 
 @pytest.fixture
 def sample_returns_data():

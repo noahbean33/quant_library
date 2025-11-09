@@ -11,7 +11,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.valueinvestpy.backtest import run_backtest
+from src.backtest import run_backtest
 
 class TestBacktest(unittest.TestCase):
 

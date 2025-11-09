@@ -1,8 +1,8 @@
 import pytest
 import pandas as pd
 import numpy as np
-from src.valueinvestpy.backtesting.engine import run_backtest
-from src.valueinvestpy.strategies.pairs_trading import PairsTradingStrategy
+from src.backtesting.engine import run_backtest
+from src.strategies.pairs_trading import PairsTradingStrategy
 
 @pytest.fixture
 def cointegrated_pair_data():

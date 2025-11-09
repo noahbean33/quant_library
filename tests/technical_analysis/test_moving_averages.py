@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.technical_analysis.moving_averages import sma, ema
+from src.technical_analysis.moving_averages import sma, ema
 
 @pytest.fixture
 def sample_data():

@@ -1,6 +1,6 @@
 import backtrader as bt
 import numpy as np
-from src.valueinvestpy.technical_analysis.momentum import Momentum
+from src.technical_analysis.momentum import Momentum
 
 class EMACrossoverStrategy(bt.Strategy):
     """

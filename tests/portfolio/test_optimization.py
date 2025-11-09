@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.portfolio.optimization import (
+from src.portfolio.optimization import (
     portfolio_annualized_performance,
     max_sharpe_ratio,
     min_variance

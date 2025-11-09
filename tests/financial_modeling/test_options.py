@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from valueinvestpy.financial_modeling.options import black_scholes
+from src.financial_modeling.options import black_scholes
 
 @pytest.fixture
 def option_params():

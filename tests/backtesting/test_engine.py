@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.backtesting.engine import run_backtest
-from valueinvestpy.backtesting.strategies.moving_average import SmaCross
+from src.backtesting.engine import run_backtest
+from src.backtesting.strategies.moving_average import SmaCross
 
 @pytest.fixture
 def ohlcv_data():

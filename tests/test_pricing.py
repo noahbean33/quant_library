@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from src.valueinvestpy.analysis.pricing import black_scholes_analytical, black_scholes_monte_carlo
+from src.analysis.pricing import black_scholes_analytical, black_scholes_monte_carlo
 
 class TestPricing(unittest.TestCase):
 

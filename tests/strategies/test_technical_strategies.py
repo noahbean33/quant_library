@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import pytest
-from src.valueinvestpy.backtesting.engine import run_backtest
-from src.valueinvestpy.strategies.technical_strategies import EMACrossoverStrategy, BollingerBandStrategy, MovingAverageRSIStrategy, MomentumStrategy
+from src.backtesting.engine import run_backtest
+from src.strategies.technical_strategies import EMACrossoverStrategy, BollingerBandStrategy, MovingAverageRSIStrategy, MomentumStrategy
 
 @pytest.fixture
 def sample_ohlc_data():

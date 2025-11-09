@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock
 
-from src.valueinvestpy.trading.broker import OandaBroker, InteractiveBrokersBroker
+from src.trading.broker import OandaBroker, InteractiveBrokersBroker
 
 
 def test_oanda_broker_init():

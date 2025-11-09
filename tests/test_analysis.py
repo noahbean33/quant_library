@@ -5,7 +5,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.valueinvestpy.analysis import calculate_ratios, calculate_graham_number
+from src.analysis import calculate_ratios, calculate_graham_number
 
 class TestAnalysis(unittest.TestCase):
 

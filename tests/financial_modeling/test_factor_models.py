@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import pytest
 import statsmodels.api as sm
-from valueinvestpy.financial_modeling.factor_models import run_factor_model
+from src.financial_modeling.factor_models import run_factor_model
 
 @pytest.fixture
 def factor_model_data():

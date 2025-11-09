@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.technical_analysis.volatility import bollinger_bands, calculate_bollinger_bands
-from valueinvestpy.technical_analysis.moving_averages import sma
+from src.technical_analysis.volatility import bollinger_bands, calculate_bollinger_bands
+from src.technical_analysis.moving_averages import sma
 
 @pytest.fixture
 def sample_data():

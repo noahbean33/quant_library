@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from unittest.mock import patch, MagicMock
 
-from src.valueinvestpy.analysis.financial_models import calculate_black_scholes, calculate_capm
+from src.analysis.financial_models import calculate_black_scholes, calculate_capm
 
 class TestFinancialModels(unittest.TestCase):
 
@@ -27,7 +27,7 @@ class TestFinancialModels(unittest.TestCase):
         with self.assertRaises(ValueError):
             calculate_black_scholes(100, 100, 1, 0.05, 0.2, option_type='invalid')
 
-    @patch('src.valueinvestpy.analysis.financial_models.fetch_stock_data')
+    @patch('src.analysis.financial_models.fetch_stock_data')
     def test_calculate_capm_success(self, mock_fetch_stock_data):
         """Test CAPM calculation with mocked data."""
         # Create mock dataframes for stock and market
@@ -54,7 +54,7 @@ class TestFinancialModels(unittest.TestCase):
         # Based on the data, beta should be around 2.62
         self.assertAlmostEqual(capm_results['beta'], 2.62, places=2)
 
-    @patch('src.valueinvestpy.analysis.financial_models.fetch_stock_data')
+    @patch('src.analysis.financial_models.fetch_stock_data')
     def test_calculate_capm_data_failure(self, mock_fetch_stock_data):
         """Test that CAPM returns an empty dict if data fetching fails."""
         mock_fetch_stock_data.return_value = pd.DataFrame() # Simulate data fetch failure

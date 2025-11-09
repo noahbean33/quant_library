@@ -1,5 +1,5 @@
 import pandas as pd
-from valueinvestpy.technical_analysis.moving_averages import ema
+from src.technical_analysis.moving_averages import ema
 
 def rsi(data: pd.Series, window: int = 14) -> pd.Series:
     """Calculate the Relative Strength Index (RSI)."""

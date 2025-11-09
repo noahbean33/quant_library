@@ -6,11 +6,11 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.valueinvestpy.portfolio import build_portfolio
+from src.portfolio import build_portfolio
 
 class TestPortfolio(unittest.TestCase):
 
-    @patch('src.valueinvestpy.portfolio.portfolio.fetch_stock_data')
+    @patch('src.portfolio.portfolio.fetch_stock_data')
     def test_build_portfolio_success(self, mock_fetch_stock_data):
         """Test successful portfolio creation."""
         # Mock the fetch_stock_data function to return sample data
@@ -28,7 +28,7 @@ class TestPortfolio(unittest.TestCase):
         self.assertEqual(list(portfolio.history.columns), tickers)
         self.assertEqual(len(portfolio.history), 2)
 
-    @patch('src.valueinvestpy.portfolio.portfolio.fetch_stock_data')
+    @patch('src.portfolio.portfolio.fetch_stock_data')
     def test_build_portfolio_partial_failure(self, mock_fetch_stock_data):
         """Test portfolio creation with one invalid ticker."""
         # Mock fetch_stock_data to return data for one ticker and an empty df for another
@@ -46,7 +46,7 @@ class TestPortfolio(unittest.TestCase):
         self.assertFalse(portfolio.history.empty)
         self.assertEqual(list(portfolio.history.columns), ['AAPL'])
 
-    @patch('src.valueinvestpy.portfolio.portfolio.fetch_stock_data')
+    @patch('src.portfolio.portfolio.fetch_stock_data')
     def test_build_portfolio_total_failure(self, mock_fetch_stock_data):
         """Test portfolio creation when all tickers are invalid."""
         # Mock fetch_stock_data to always return an empty DataFrame

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-from valueinvestpy.technical_analysis.oscillators import rsi
-from valueinvestpy.technical_analysis.moving_averages import sma
+from src.technical_analysis.oscillators import rsi
+from src.technical_analysis.moving_averages import sma
 
 def construct_lagged_return_features(data, lags=2):
     """

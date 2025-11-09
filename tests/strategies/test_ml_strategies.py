@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import pytest
-from src.valueinvestpy.backtesting.engine import run_backtest
-from src.valueinvestpy.strategies.ml_strategies import (
+from src.backtesting.engine import run_backtest
+from src.strategies.ml_strategies import (
     LogisticRegressionStrategy, SVMStrategy, RegressionMomentumStrategy, 
     CrossSectionalMeanReversion, TimeRebalancedMomentumStrategy, SVMCombinedStrategy, SVMTuningStrategy
 )

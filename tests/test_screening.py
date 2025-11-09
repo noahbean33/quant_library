@@ -6,11 +6,11 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.valueinvestpy.screening import screen_stocks
+from src.screening import screen_stocks
 
 class TestScreening(unittest.TestCase):
 
-    @patch('src.valueinvestpy.screening.screener.calculate_ratios')
+    @patch('src.screening.screener.calculate_ratios')
     def test_screen_stocks(self, mock_calculate_ratios):
         """Test the stock screening functionality."""
         # Define the mock return values for calculate_ratios
@@ -43,7 +43,7 @@ class TestScreening(unittest.TestCase):
         self.assertNotIn('MISSING_DATA', screened_stocks['ticker'].values)
         self.assertEqual(len(screened_stocks), 2)
 
-    @patch('src.valueinvestpy.screening.screener.calculate_ratios')
+    @patch('src.screening.screener.calculate_ratios')
     def test_screen_stocks_no_matches(self, mock_calculate_ratios):
         """Test the screener when no stocks match the criteria."""
         mock_calculate_ratios.return_value = {'pe_ratio': 100, 'pb_ratio': 10}

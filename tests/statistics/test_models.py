@@ -3,7 +3,7 @@ import pandas as pd
 import pytest
 from statsmodels.tsa.arima_process import arma_generate_sample
 
-from valueinvestpy.statistics.models import fit_arima
+from src.statistics.models import fit_arima
 
 
 @pytest.fixture

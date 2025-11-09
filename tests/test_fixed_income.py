@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from src.valueinvestpy.analysis.fixed_income import (
+from src.analysis.fixed_income import (
     calculate_present_value, 
     calculate_future_value, 
     calculate_zero_coupon_bond_price,

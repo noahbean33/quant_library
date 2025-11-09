@@ -6,7 +6,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.valueinvestpy.data_fetch import fetch_stock_data, fetch_financials
+from src.data_fetch import fetch_stock_data, fetch_financials
 
 class TestDataFetch(unittest.TestCase):
 

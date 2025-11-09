@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 import numpy as np
-from src.valueinvestpy.analysis.risk import calculate_var, calculate_var_monte_carlo
+from src.analysis.risk import calculate_var, calculate_var_monte_carlo
 
 class TestRisk(unittest.TestCase):
 

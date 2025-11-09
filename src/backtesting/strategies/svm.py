@@ -1,21 +1,22 @@
 import backtrader as bt
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from valueinvestpy.machine_learning.feature_engineering import construct_lagged_return_features
+from sklearn.svm import SVC
+from src.machine_learning.feature_engineering import construct_lagged_return_features
 
-class LogisticRegressionStrategy(bt.Strategy):
+class SVMStrategy(bt.Strategy):
     """
-    A backtrader strategy that uses a logistic regression model to predict
+    A backtrader strategy that uses a Support Vector Machine (SVM) model to predict
     the direction of the next day's price change.
     """
     params = (
         ('lags', 2),
+        ('C', 1.0),  # Regularization parameter for SVC
     )
 
     def __init__(self):
         """
-        Initializes the strategy by training a logistic regression model on the
+        Initializes the strategy by training an SVM model on the
         entire historical dataset provided to the backtest.
         """
         # Convert the backtrader data feed to a pandas DataFrame for feature engineering
@@ -30,14 +31,14 @@ class LogisticRegressionStrategy(bt.Strategy):
         X = df_features[feature_columns]
         y = df_features['Direction']
 
-        # Train the logistic regression model
-        self.model = LogisticRegression()
+        # Train the SVM model
+        self.model = SVC(C=self.p.C)
         self.model.fit(X, y)
 
         # Keep a reference to the close price data feed
         self.dataclose = self.datas[0].close
 
-        # Track pending orders to avoid double submissions
+        # Track pending orders to avoid repeated submissions
         self.order = None
 
     def next(self):
@@ -51,7 +52,6 @@ class LogisticRegressionStrategy(bt.Strategy):
         # We need enough data to construct the features
         if len(self) > self.p.lags:
             # Construct the feature set for the current bar
-            # The features are based on lagged percentage changes
             current_features = []
             for i in range(1, self.p.lags + 1):
                 lag_pct_change = (self.dataclose[-i] - self.dataclose[-(i+1)]) / self.dataclose[-(i+1)] * 100

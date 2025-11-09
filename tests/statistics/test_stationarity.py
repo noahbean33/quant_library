@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pytest
-from valueinvestpy.statistics.stationarity import adf_test, kpss_test
+from src.statistics.stationarity import adf_test, kpss_test
 
 @pytest.fixture
 def stationary_series():

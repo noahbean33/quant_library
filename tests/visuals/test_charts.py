@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import pytest
 from unittest.mock import patch
-from valueinvestpy.visuals.charts import plot_candlestick, plot_correlogram
+from src.visuals.charts import plot_candlestick, plot_correlogram
 
 @pytest.fixture
 def ohlcv_data():
@@ -22,7 +22,7 @@ def time_series_data():
     """Fixture for a sample time series."""
     return pd.Series(np.random.randn(100), name='Test_Series')
 
-@patch('valueinvestpy.visuals.charts.mpf.plot')
+@patch('src.visuals.charts.mpf.plot')
 def test_plot_candlestick(mock_plot, ohlcv_data):
     """Test the candlestick plotting function by checking if it calls the underlying library correctly."""
     plot_candlestick(ohlcv_data, title='Test Chart', mav=(5, 10), show_volume=True)
@@ -37,7 +37,7 @@ def test_plot_candlestick(mock_plot, ohlcv_data):
     assert kwargs['mav'] == (5, 10)
     assert kwargs['volume'] is True
 
-@patch('valueinvestpy.visuals.charts.plot_acf')
+@patch('src.visuals.charts.plot_acf')
 def test_plot_correlogram(mock_plot_acf, time_series_data):
     """Test the correlogram plotting function by checking if it calls the underlying library correctly."""
     plot_correlogram(time_series_data, lags=15, title='Test Correlogram')

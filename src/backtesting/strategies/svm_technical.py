@@ -2,9 +2,9 @@ import backtrader as bt
 import pandas as pd
 import numpy as np
 from sklearn.svm import SVC
-from valueinvestpy.machine_learning.feature_engineering import construct_technical_indicator_features
-from valueinvestpy.technical_analysis.oscillators import rsi
-from valueinvestpy.technical_analysis.moving_averages import sma
+from src.machine_learning.feature_engineering import construct_technical_indicator_features
+from src.technical_analysis.oscillators import rsi
+from src.technical_analysis.moving_averages import sma
 
 class SVMTechnicalStrategy(bt.Strategy):
     """
