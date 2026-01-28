@@ -60,3 +60,9 @@ venv.bak/
 # Secrets
 *.env
 secrets.toml
+
+# Rust
+target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
