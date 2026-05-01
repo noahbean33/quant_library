@@ -1,0 +1,14 @@
+[package]
+name = "RustQuant_pyo3"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "RustQuant"
+crate-type = ["cdylib"]
+path = "rust/lib.rs"
+
+[dependencies]
+RustQuant = {path = "../crates/RustQuant"}
+pyo3 = { workspace = true }
+time = { workspace = true }
